@@ -53,6 +53,7 @@ class Calculator extends Component {
         this.addDecimal = this.addDecimal.bind(this);
         this.calculate  = this.calculate.bind(this);
         this.update = this.updateInputDisplay.bind(this);
+        this.clear = this.clear.bind(this);
     }
 
     updateInputDisplay(input) {
@@ -103,6 +104,14 @@ class Calculator extends Component {
         }));
     }
 
+    clear(){
+        this.setState(prevState => ({
+            inputArray:[],
+            digits: [],
+            total: 0
+        }));
+    }
+
     render(){
         console.log(this.state);
         return(
@@ -113,6 +122,7 @@ class Calculator extends Component {
                 </div>
 
                 {/* <Buttons> */}
+                    <button value="C" onClick={this.clear}>C</button>
                     <button value="+/-" onClick={this.negate}>+/-</button>
                     <button value="%" onClick={this.percentage()}>%</button>
                     <button value="/" onClick={() => this.update("/")}>/</button>
