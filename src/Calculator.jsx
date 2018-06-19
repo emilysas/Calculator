@@ -85,7 +85,19 @@ class Calculator extends Component {
     }
 
     percentage(){
+        if(this.state.digits.length >= 1) {
+            let currentDigits = [...this.state.digits];
+            currentDigits.unshift(0, ".")
+            let val = currentDigits.join("");
+            
+            let newInput = [...this.state.inputArray]
+            newInput = newInput.slice(0, -1);
 
+            this.setState(prevState => ({
+                inputArray: [...newInput, val],
+                digits: []
+            }));
+        }
     }
 
     addDecimal(){
@@ -124,8 +136,8 @@ class Calculator extends Component {
                 {/* <Buttons> */}
                     <button value="C" onClick={this.clear}>C</button>
                     <button value="+/-" onClick={this.negate}>+/-</button>
-                    <button value="%" onClick={this.percentage()}>%</button>
-                    <button value="/" onClick={() => this.update("/")}>/</button>
+                    <button value="%" onClick={this.percentage}>%</button>
+                    <button value="\" onClick={() => this.update("/")}>\</button>
                     <br />
                     <button value={7} onClick={() => this.addVal(7)}>7</button>
                     <button value={8} onClick={() => this.addVal(8)}>8</button>
