@@ -88,7 +88,9 @@ class Calculator extends Component {
     }
 
     addDecimal(){
-
+        if(!this.state.inputArray.includes(".")){
+            this.updateInputDisplay(".")
+        }
     }
 
     calculate(){
