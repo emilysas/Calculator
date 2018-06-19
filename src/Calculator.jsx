@@ -10,10 +10,13 @@ class InputDisplay extends Component {
         this.setState({inputList: newProps.inputArray});
     }
 
-    render (props){
+    render (){
+
+        let displayVal = this.state.inputList.length >= 1 ? this.state.inputList.join(" ") : "...";
+
         return(
             <div>
-                {this.state.inputList.join(" ")}
+                {displayVal}
             </div>
         )
     }
@@ -113,11 +116,13 @@ class Calculator extends Component {
     }
 
     calculate(){
-        let inputs = this.state.inputArray.map(i => i == "x" ? "*" : i);
+        let inputs = [0]
+        if (this.state.inputArray.length >= 1){
+            inputs = this.state.inputArray.map(i => i == "x" ? "*" : i);
+        }
         if(typeof inputs[inputs.length-1] == "string"){
             inputs = inputs.slice(0, -1)
         }
-        console.log(inputs);
         let newTotal = eval(inputs.join(""));
 
         this.setState(prevState => ({
@@ -135,7 +140,6 @@ class Calculator extends Component {
     }
 
     render(){
-        console.log(this.state);
         return(
             <div>
                 <div>
