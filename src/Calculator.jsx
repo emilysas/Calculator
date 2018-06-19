@@ -21,14 +21,16 @@ class InputDisplay extends Component {
 
 class ResultDisplay extends Component {
     state = { 
-        result: this.props.total
+        result: this.props.total,
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({result: newProps.total});
+        this.setState({
+            result: newProps.total,
+        });
     }
 
-    render(props){
+    render(){
         return (
             <div>
                 {this.state.result}
@@ -44,6 +46,7 @@ class Calculator extends Component {
         this.state = {
             inputArray:[],
             digits: [],
+            negative: false,
             total: 0
         }
         
@@ -81,7 +84,10 @@ class Calculator extends Component {
     }
 
     negate(){
-        
+        this.setState(prevState => ({
+            negative: !prevState.negative
+        }));
+        this.calculate();
     }
 
     percentage(){
@@ -108,11 +114,14 @@ class Calculator extends Component {
 
     calculate(){
         let inputs = this.state.inputArray.map(i => i == "x" ? "*" : i);
+        if(typeof inputs[inputs.length-1] == "string"){
+            inputs = inputs.slice(0, -1)
+        }
         console.log(inputs);
         let newTotal = eval(inputs.join(""));
 
         this.setState(prevState => ({
-            total: newTotal
+            total: prevState.negative ? `-${newTotal}` : newTotal
         }));
     }
 
@@ -120,6 +129,7 @@ class Calculator extends Component {
         this.setState(prevState => ({
             inputArray:[],
             digits: [],
+            negative: false,
             total: 0
         }));
     }
