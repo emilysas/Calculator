@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 class InputDisplay extends Component {
     state = { 
@@ -75,7 +75,7 @@ class Calculator extends Component {
         newInput.push(...this.state.inputArray);
 
         if(this.state.digits.length >= 1) {
-            let currentDigits = [...currentDigits, ...this.state.digits, val];
+            let currentDigits = [...this.state.digits, val];
             input = currentDigits.join("");
             newInput = newInput.slice(0, -1);
         }
@@ -118,9 +118,9 @@ class Calculator extends Component {
     calculate(){
         let inputs = [0]
         if (this.state.inputArray.length >= 1){
-            inputs = this.state.inputArray.map(i => i == "x" ? "*" : i);
+            inputs = this.state.inputArray.map(i => i === "x" ? "*" : i);
         }
-        if(typeof inputs[inputs.length-1] == "string"){
+        if(typeof inputs[inputs.length-1] === "string"){
             inputs = inputs.slice(0, -1)
         }
         let newTotal = eval(inputs.join(""));
