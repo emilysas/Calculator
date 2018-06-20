@@ -168,7 +168,7 @@ class Calculator extends Component {
 
         const finalRow = [ 
             {val: 0, func: () => {this.addVal(0)} }, 
-            {val: ".", func: () => {this.addDecimal} }, 
+            {val: ".", func: () => {this.addDecimal()} }, 
             {val: "=", func: () => {this.calculate()} },
         ]
 
@@ -177,7 +177,7 @@ class Calculator extends Component {
             return (
                 buttons.map(({val, func}) => {
                     return (
-                        <button value={val} onClick={() => func()}>{val}</button>
+                        <button key={val} onClick={() => func()}>{val}</button>
                     )
                 })
             )
