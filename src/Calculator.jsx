@@ -1,49 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import InputDisplay from './InputDisplay';
+import ResultDisplay from './ResultDisplay';
 
-class InputDisplay extends Component {
-    state = { 
-        inputList: this.props.inputArray
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.setState({inputList: newProps.inputArray});
-    }
-
-    render (){
-
-        let displayVal = this.state.inputList.length >= 1 ? this.state.inputList.join(" ") : "...";
-
-        return(
-            <div>
-                {displayVal}
-            </div>
-        )
-    }
-}
-
-class ResultDisplay extends Component {
-    state = { 
-        result: this.props.total,
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.setState({
-            result: newProps.total,
-        });
-    }
-
-    render(){
-        return (
-            <div>
-                {this.state.result}
-            </div>
-        )
-    }
-};
 
 class Calculator extends Component {
-    constructor(props){
+    constructor(){
         super();
 
         this.state = {
