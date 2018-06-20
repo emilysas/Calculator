@@ -138,38 +138,76 @@ class Calculator extends Component {
     }
 
     render(){
+        const firstRow = [ 
+            {val: "C", func: () => {this.clear()} }, 
+            {val: "+/-", func: () => {this.negate()} }, 
+            {val: "%", func: () => {this.percentage()} },
+            {val: "/", func: () => {this.update("/")} } 
+        ]
+
+        const secondRow = [ 
+            {val: 7, func: () => {this.addVal(7)} }, 
+            {val: 8, func: () => {this.addVal(8)} }, 
+            {val: 9, func: () => {this.addVal(9)} },
+            {val: "x", func: () => {this.update("x")} } 
+        ]
+
+        const thirdRow = [ 
+            {val: 4, func: () => {this.addVal(4)} }, 
+            {val: 5, func: () => {this.addVal(5)} }, 
+            {val: 6, func: () => {this.addVal(6)} },
+            {val: "-", func: () => {this.update("-")} } 
+        ]
+
+        const forthRow = [ 
+            {val: 1, func: () => {this.addVal(1)} }, 
+            {val: 2, func: () => {this.addVal(2)} }, 
+            {val: 3, func: () => {this.addVal(3)} },
+            {val: "+", func: () => {this.update("+")} } 
+        ]
+
+        const finalRow = [ 
+            {val: 0, func: () => {this.addVal(0)} }, 
+            {val: ".", func: () => {this.addDecimal} }, 
+            {val: "=", func: () => {this.calculate()} },
+        ]
+
         return(
             <div>
                 <div>
                     <InputDisplay inputArray={this.state.inputArray}/>
                     <ResultDisplay total={this.state.total}/>
                 </div>
-
-                {/* <Buttons> */}
-                    <button value="C" onClick={this.clear}>C</button>
-                    <button value="+/-" onClick={this.negate}>+/-</button>
-                    <button value="%" onClick={this.percentage}>%</button>
-                    <button value="\" onClick={() => this.update("/")}>\</button>
+                    {firstRow.map(({val, func}) => {
+                        return (
+                            <button value={val} onClick={() => func()}>{val}</button>
+                        )
+                    })}
                     <br />
-                    <button value={7} onClick={() => this.addVal(7)}>7</button>
-                    <button value={8} onClick={() => this.addVal(8)}>8</button>
-                    <button value={9} onClick={() => this.addVal(9)}>9</button>
-                    <button value="x" onClick={() => this.update("x")}>x</button>
+                    {secondRow.map(({val, func}) => {
+                        return (
+                            <button value={val} onClick={() => func()}>{val}</button>
+                        )
+                    })}
+                    
                     <br />
-                    <button value={4} onClick={() => this.addVal(4)}>4</button>
-                    <button value={5} onClick={() => this.addVal(5)}>5</button>
-                    <button value={6} onClick={() => this.addVal(6)}>6</button>
-                    <button value="-" onClick={() => this.update("-")}>-</button>
+                    {thirdRow.map(({val, func}) => {
+                        return (
+                            <button value={val} onClick={() => func()}>{val}</button>
+                        )
+                    })}
                     <br />
-                    <button value={1} onClick={() => this.addVal(1)}>1</button>
-                    <button value={2} onClick={() => this.addVal(2)}>2</button>
-                    <button value={3} onClick={() => this.addVal(3)}>3</button>
-                    <button name="add" value="+" onClick={() => this.update("+")}>+</button>
+                    {forthRow.map(({val, func}) => {
+                        return (
+                            <button value={val} onClick={() => func()}>{val}</button>
+                        )
+                    })}
                     <br />
-                    <button value={0} onClick={() => this.addVal(0)}>0</button> 
-                    <button value="." onClick={this.addDecimal}>.</button>
-                    <button value="=" onClick={this.calculate}>=</button>
-                {/* </Buttons> */}
+                    {finalRow.map(({val, func}) => {
+                        return (
+                            <button value={val} onClick={() => func()}>{val}</button>
+                        )
+                    })}
             </div>
         );
     }
