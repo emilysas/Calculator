@@ -172,42 +172,32 @@ class Calculator extends Component {
             {val: "=", func: () => {this.calculate()} },
         ]
 
+
+        const mapRow = (buttons) => {
+            return (
+                buttons.map(({val, func}) => {
+                    return (
+                        <button value={val} onClick={() => func()}>{val}</button>
+                    )
+                })
+            )
+        }
+
         return(
             <div>
                 <div>
                     <InputDisplay inputArray={this.state.inputArray}/>
                     <ResultDisplay total={this.state.total}/>
                 </div>
-                    {firstRow.map(({val, func}) => {
-                        return (
-                            <button value={val} onClick={() => func()}>{val}</button>
-                        )
-                    })}
+                    {mapRow(firstRow)}
                     <br />
-                    {secondRow.map(({val, func}) => {
-                        return (
-                            <button value={val} onClick={() => func()}>{val}</button>
-                        )
-                    })}
-                    
+                    {mapRow(secondRow)}
                     <br />
-                    {thirdRow.map(({val, func}) => {
-                        return (
-                            <button value={val} onClick={() => func()}>{val}</button>
-                        )
-                    })}
+                    {mapRow(thirdRow)}
                     <br />
-                    {forthRow.map(({val, func}) => {
-                        return (
-                            <button value={val} onClick={() => func()}>{val}</button>
-                        )
-                    })}
+                    {mapRow(forthRow)}
                     <br />
-                    {finalRow.map(({val, func}) => {
-                        return (
-                            <button value={val} onClick={() => func()}>{val}</button>
-                        )
-                    })}
+                    {mapRow(finalRow)}
             </div>
         );
     }
